@@ -12,6 +12,7 @@ const INDEX_TEMPLATE = path.resolve(__dirname, 'src/index.html')
 const OUTPUT_PATH = ENV === 'production' ? path.resolve('dist') : path.resolve('src') // resolve('dist')
 
 const webcomponentsjs = './node_modules/@webcomponents/webcomponentsjs'
+const webanimationjs = './node_modules/web-animations-js'
 
 
 const polyfills = [
@@ -30,11 +31,11 @@ const polyfills = [
         to: path.join(OUTPUT_PATH, 'vendor'),
         flatten: true
     },
-    // {
-    //     from: resolve(`${webanimationjs}/web-animations-next.min.js`),
-    //     to: join(OUTPUT_PATH, 'vendor'),
-    //     flatten: true
-    // }
+    {
+        from: path.resolve(`${webanimationjs}/web-animations-next.min.js`),
+        to: path.join(OUTPUT_PATH, 'vendor'),
+        flatten: true
+    }
     // {
     //     from: resolve('./node_modules/whatwg-fetch/fetch.js'),
     //     to: join(OUTPUT_PATH, 'vendor')

@@ -32,12 +32,17 @@ purpleColor = #84A5DF
     bottom 56px
     right 0
 
-
     background purpleColor
     border-radius 80px
     padding: 8px 8px 6px 8px
+
 .hidden
     display none
+    // animation fade-hide 2.5s infinite 
+
+// .hidden .fab-label
+//     animation hide-labels 2.5s infinite 
+    
 .fab
     border-radius: 80px
     padding: 4px 5px
@@ -56,9 +61,28 @@ purpleColor = #84A5DF
     color: #fff
     border-radius: 30px
     font-family: primaryFont, monospace
-
+    overflow: hidden
 .fab > svg 
     width 21px
     height 21px
 .icon
     background: #00000000 !important
+
+
+// @keyframes fade-hide
+//   0%
+//     opacity 1
+//   100%
+//     opacity 0
+//     transform: translateX(20px) translateY(20px) scale(0.5)
+
+// @keyframes hide-labels
+//   0%
+//     width auto
+//     color #00000000
+//   100%
+//     width 0px
+//     padding: 0
+//     color #00000000
+//     transform scale(0.5)
+

@@ -24,7 +24,7 @@ class FabGroup extends LitElement {
         <style>
         ${css}
         </style>
-        <div class="fab-bar ${this.showFabBar?'':'hidden'}">
+        <div id="fab-bar-el" class="fab-bar ${this.showFabBar?'':'hidden'}">
             <button class="fab icon">
                 <span class="fab-label">Source Code</span>
                 ${svg(githubAltSVG)}</button>
@@ -45,13 +45,29 @@ class FabGroup extends LitElement {
                     ${svg(questionSVG)}
             </button>
         </div>
-        <button class="fab-menu" @click=${() => this.openFabBar()}>
+        <button class="fab-menu" @click=${(e) => this.openFabBar(e)}>
             ${svg(ellipsisHSVG)}
         </button>`
     }
 
-    openFabBar() {
-        this.showFabBar = !this.showFabBar
+    async openFabBar(e) {
+        const fabBarEl = this.shadowRoot.getElementById('fab-bar-el')
+        let fabBarAnim = fabBarEl.animate({
+            opacity: [1, 0]
+        }, {
+            duration: 200
+        })
+        fabBarAnim.pause()
+
+        if (this.showFabBar) {
+            fabBarAnim.onfinish = () => {
+                this.showFabBar = !this.showFabBar
+            }
+            fabBarAnim.play()
+        } else {
+            this.showFabBar = !this.showFabBar
+            fabBarAnim.reverse()
+        }
     }
 }
 
