@@ -1,0 +1,53 @@
+@import '../../theme.styl'
+
+
+:host
+    position: absolute
+    top: 20px
+    left 0
+    width: 100%
+    z-index: 3
+
+.wrapper
+    max-width: 90%
+    margin-left: auto
+    margin-right: auto
+    position relative
+
+@media screen and (min-width:1023px)
+    .wrapper
+        max-width: 800px
+        margin-left: auto
+        margin-right: auto
+
+.search-bar > input
+    width: 100%
+    padding: 12px 20px
+    border-radius 50px
+    border 3px solid #000
+    background: #ffffff
+    color: #000000
+    font-size: 20px
+    outline none
+    font-family: primaryFont, monospace
+
+    box-sizing: border-box
+    -webkit-box-sizing:border-box
+    -moz-box-sizing: border-box
+
+.mic-icon
+.search-icon
+    position absolute
+    top 50%
+    transform: translateY(-50%)
+    display inline-block
+    width: 24px
+    height 24px
+.search-icon
+    right 18px
+
+.mic-icon
+    right 50px
+    
+.icon #search
+    fill: #000

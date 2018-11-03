@@ -2,15 +2,20 @@ import { LitElement } from "@polymer/lit-element";
 import { html /*, render*/ } from 'lit-html'
 
 import { when } from 'lit-html/directives/when'
-import { until } from 'lit-html/directives/until'
-import { guard } from 'lit-html/directives/guard'
-import { ifDefined } from 'lit-html/directives/if-defined'
-import { asyncAppend } from 'lit-html/directives/async-append'
-import { asyncReplace } from 'lit-html/directives/async-replace'
+// import { until } from 'lit-html/directives/until'
+// import { guard } from 'lit-html/directives/guard'
+// import { ifDefined } from 'lit-html/directives/if-defined'
+// import { asyncAppend } from 'lit-html/directives/async-append'
+// import { asyncReplace } from 'lit-html/directives/async-replace'
 
 import './components/toolbar/toolbar.js'
 import appCss from './lit-app.styl'
 import './components/box-card/box-card.js'
+import './components/search-bar/search-bar.js'
+import './components/voz-three-btn/voz-three-btn.js'
+import './components/word-chip/word-chip.js'
+import './components/phrase-player/phrase-player.js'
+import './components/fab-group/fab-group.js'
 
 import { offlineWatcher } from './helpers/network'
 
@@ -62,56 +67,18 @@ class LitApp extends LitElement {
             <div class="offline-mode">Offline mode. Please check your connection</div>
         `, () => {})}
 
-        <m-toolbar title="Lit-App template"></m-toolbar>
+        <search-bar></search-bar>
+        <phrase-player .words=${[2,2,4,5]}></phrase-player>
 
         <div class="page-container">
-
-            <h2>Examples with Lit-html</h2>
-
-            <box-card title="when directive">
-                <label>Trigger:</label>
-                <input type="checkbox" .checked?=${this.whenCheckbox} @click=${ (e) => this.whenCheckbox = !this.whenCheckbox }>
-                ${ when(this.whenCheckbox, () => html`<div>true template</div>`, () => html`<div>false template</div>`) }
-            </box-card>
-
-            <box-card title="until directive">
-                <div id="slot"></div>
-                ${until(
-                    new Promise((resolve, reject) => {
-                        setTimeout(() => {
-                            resolve(html`<div>Response of promise!</div>`)
-                        }, 3000);
-                    }),
-                    html`<div>a content <b>until</b> we wait for the promise resolution</div>`
-                )}
-            </box-card>
-
-
-            <box-card title="guard directive">
-                <p>Re-render only if items length is greater than 5 </p>
-                <button @click=${() => this.guardItems = [...this.guardItems, 'yellow']}>Modify Items!</button>
-                ${guard((this.guardItems.length > 5),
-                    () => { 
-                        console.log('guard Fn is triggered!')
-                        return this.guardItems.map((item, i) => html`${` ${item} - ${i} `}`)
-                    }
-                )}
-            </box-card>
-
-
-            <box-card title="if-defined directive">
-                <p>If defined...</p>
-                <p style=${ifDefined(redTextStyle)}>This sample text has a red color text</p>
-                <p>If not defined...</p>
-                <p style=${ifDefined(undefined)}>This sample text has no color text</p>
-            </box-card>
-
-
-            <box-card title="async-append async-replace directive">
-                <p>${html`Count (appended): <span>${asyncAppend(countUp())}</span>.`}</p>
-                <p>${html`Count (replaced): <span>${asyncReplace(countUp())}</span>.`}</p>
-            </box-card>
+            <!-- <h2>Lit-html with States</h2>
+            <div>
+            <word-chip text="hola"></word-chip>
+            </div> -->
         </div>
+
+        <fab-group></fab-group>
+        <voz-three-btn></voz-three-btn>
         `
     }
 }
