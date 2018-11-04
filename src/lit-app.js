@@ -10,7 +10,7 @@ import { when } from 'lit-html/directives/when'
 
 import './components/toolbar/toolbar.js'
 import appCss from './lit-app.styl'
-import './components/box-card/box-card.js'
+// import './components/box-card/box-card.js'
 import './components/search-bar/search-bar.js'
 import './components/voz-three-btn/voz-three-btn.js'
 import './components/word-chip/word-chip.js'
