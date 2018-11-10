@@ -1,5 +1,4 @@
-[
-    {
+{
         "hierarchy":[{
             "parent":-1,
             "keys":[{
@@ -35556,5 +35555,4 @@
         "fps":24,
         "length":6.66667,
         "name":"acercarme_0001"
-    }
-]
+}
