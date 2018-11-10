@@ -3,7 +3,7 @@ import {html} from 'lit-html'
 import * as THREE from 'three'
 let OrbitControls = require('three-orbit-controls')(THREE)
 import css from './scene-avatar.styl'
-import { initializeModel, loadAnimation, playAnimation, parseAnimations } from './utils'
+import { initializeModel, loadAnimation, playAnimation, parseAnimation } from './utils'
 
 class SceneAvatar extends LitElement {
 
@@ -88,10 +88,10 @@ class SceneAvatar extends LitElement {
             // })
 
             setTimeout(() => {
-                let animations = parseAnimations('../../assets/acercarme_0001.json')
-                console.log('animations', animations)
+                let animation = parseAnimation('../../assets/acercarme_0001.json')
+                console.log('animations', animation)
                 // let clip = this.loadAnimation(animations[0] /* ... */ )
-                let clip = THREE.AnimationClip.parseAnimation( animations[0], this.geometry.body.bones)
+                let clip = THREE.AnimationClip.parseAnimation( animation, this.geometry.body.bones)
                 console.log('root', this.mixer.body.getRoot())
                 let action = this.mixer.body.clipAction(clip)
                 action.play()

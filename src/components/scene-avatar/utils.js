@@ -68,7 +68,7 @@ export const playAnimation = (mixer, clips, name) => {
     }
 }
 
-export const parseAnimations = (url, assets = true) => {
+export const parseAnimation = (url, assets = true) => {
     if (assets) {
         return data
     } else {
