@@ -1,9 +1,13 @@
 import {LitElement} from '@polymer/lit-element'
 import {html} from 'lit-html'
+import axios from 'axios'
 import * as THREE from 'three'
 let OrbitControls = require('three-orbit-controls')(THREE)
+
+import { initializeModel } from './utils'
+import playlist from './playlist.js'
+
 import css from './scene-avatar.styl'
-import { initializeModel, loadAnimation, playAnimation, parseAnimation } from './utils'
 
 class SceneAvatar extends LitElement {
 
@@ -18,6 +22,8 @@ class SceneAvatar extends LitElement {
         this.controls = null
         this.mixer = null
         this.geometry = null
+
+        this.playlist = new playlist()
     }
 
     static get properties() {
@@ -68,14 +74,22 @@ class SceneAvatar extends LitElement {
         let light3 = new THREE.PointLight(0x939393, 1, 100)
         light3.position.set(0, 70, 0)
         this.scene.add(light3)
-        
-        // loading scene with avatars
-        // let character = null, mixer = null
+
+        window.addEventListener('resize', () => {
+            this.onWindowResize()
+        }, false)
+
+        this.animate()
+
+        // loading avatars
         initializeModel(
-            ['../../assets/body.json', '../../assets/head.json'],
-            () => { console.log('on pregress...')}
+            ['../../assets/body.json', '../../assets/head.json']
+            // ['https://voz3d.sfo2.digitaloceanspaces.com/models/body.json', 'https://voz3d.sfo2.digitaloceanspaces.com/models/head.json']
+            ,
+            () => { console.log('on progress...')}
         )
         .then(({character, mixer}) => {
+
             this.scene.add(character.head)
             this.scene.add(character.body)
             this.mixer = mixer
@@ -83,36 +97,33 @@ class SceneAvatar extends LitElement {
                 head: character.head.geometry,
                 body: character.body.geometry
             }
-            // mixer.body.addEventListener('finished', function(e) {
-            //     console.log('on finished')
-            // })
+            this.mixer.body.addEventListener('finished', (e) => {
+                this.onFinishAnimation('body')
+            })
+            this.mixer.head.addEventListener('finished', (e) => {
+                this.onFinishAnimation('name')
+            })
 
             setTimeout(() => {
-                let animation = parseAnimation('../../assets/acercarme_0001.json')
-                console.log('animations', animation)
-                // let clip = this.loadAnimation(animations[0] /* ... */ )
-                let clip = THREE.AnimationClip.parseAnimation( animation, this.geometry.body.bones)
-                console.log('root', this.mixer.body.getRoot())
-                let action = this.mixer.body.clipAction(clip)
-                action.play()
-                console.log('done?')
-                // playAnimation(this.mixer.body, [clip], 'acercarme_0001')
-            }, 2000);
+                this.onPlayAnimations([
+                    {   label:"acercarme",
+                        animations: { 
+                            head: "https://voz3d.sfo2.digitaloceanspaces.com/animations/head/0_MIEDOSO.json", 
+                            body: "https://voz3d.sfo2.digitaloceanspaces.com/animations/body/acercarme_0001.json"
+                        }
+                    },
+                    {   label:"acercarme",
+                        animations: { 
+                            head: "https://voz3d.sfo2.digitaloceanspaces.com/animations/head/0_MIEDOSO.json", 
+                            body: "https://voz3d.sfo2.digitaloceanspaces.com/animations/body/acercarme_0001.json"
+                        }
+                    }
+                ])
+            }, 2000)
         })
         .catch(err => {
             console.log('err', err)
         })
-
-        window.addEventListener('resize', () => {
-            this.onWindowResize()
-        }, false)
-        this.animate()
-    }
-
-    loadAnimation(animation) {
-        // let geometry = new THREE.Geometry()
-        console.log('geometry', this.geometry.body.bones)
-        loadAnimation(animation, this.geometry.body)
     }
 
     onWindowResize() {
@@ -122,7 +133,70 @@ class SceneAvatar extends LitElement {
         this.renderer.setSize(window.innerWidth, window.innerHeight)
     }
     
+    async onPlayAnimations(words) {
+        console.log('async onPlayAnimations')
+        this.playlist.set([...words])
+        this.playAnimation(this.playlist.first())
+    }
 
+    async playAnimation(word) {
+        let clips = []
+
+        try {
+            if (word.animations.head !== null && word.animations.body !== null) {
+                // BOTH
+                let responseHead = await axios.get(word.animations.head)
+                let responseBody = await axios.get(word.animations.body)
+
+                console.log('async responseBody', responseBody)
+                clips.push({ head: responseHead.data, body: responseBody.data })
+            } else if (word.animations.head !== null && word.animations.body === null) {
+                // HEAD
+                let response = await axios.get(word.animations.head)
+                clips.push({ head: response.data, body: null })    
+            } else if (word.animations.head === null && word.animations.body !== null) {
+                // BODY
+                let response = await axios.get(word.animations.body)
+                clips.push({ head: null, body: response.data })    
+                console.log('async response', response)
+            } else {
+                // ALL NULL    
+            }      
+        } catch (err) {
+            console.log('err', err)
+        }
+
+        console.log('async onPlayAnimation playlist ', clips)
+
+        if (clips.length === 1) {
+            const animation = clips[0]
+            if (animation.head !== null) {
+                let clip = THREE.AnimationClip.parseAnimation( animation.head, this.geometry.head.bones)
+                let action = (this.mixer.head.clipAction(clip))
+                action.loop = THREE.LoopOnce
+                action.play()
+            }
+            if (animation.body !== null) {
+                let clip = THREE.AnimationClip.parseAnimation( animation.body, this.geometry.body.bones)
+                let action = (this.mixer.body.clipAction(clip))
+                action.loop = THREE.LoopOnce
+                action.play()
+            }            
+        }
+
+    }
+
+    onFinishAnimation(part) {
+        if (this.playlist.animationHasFinished(part)) {
+            this.nextAnimation()
+        }
+    }
+
+    nextAnimation() {
+        if (this.playlist.hasNext()) {
+            this.playAnimation(this.playlist.first())
+        }
+    }
 
     animate () {
         // this.quickSampleAnimate()

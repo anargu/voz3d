@@ -1,7 +1,7 @@
 import * as THREE from 'three'
-import data from '../../assets/acercarme_0001.json'
+// import data from '../../assets/acercarme_0001.json'
 
-export const initializeModel = (urls, onProgress) => {
+export const initializeModel = (urls, onProgress = null) => {
     return new Promise((resolve, reject) => {
         let character = {}, mixer = {}
 
@@ -31,7 +31,9 @@ export const initializeModel = (urls, onProgress) => {
                     },
                     // onProgress
                     (ev) => {
-                        onProgress(ev)
+                        if (onProgress !== null) {
+                            onProgress(ev)
+                        }
                     },
                     // onError
                     (ev) => {
@@ -43,7 +45,9 @@ export const initializeModel = (urls, onProgress) => {
             },
             // onProgress
             (ev) => {
-                onProgress(ev)
+                if (onProgress !== null) {
+                    onProgress(ev)
+                }
             },
             // onError
             (ev) => {
@@ -52,27 +56,4 @@ export const initializeModel = (urls, onProgress) => {
             }
         )
     })
-}
-
-export const loadAnimation = (animation, geometry) => {
-    return THREE.AnimationClip.parseAnimation( animation, geometry.bones)
-}
-
-export const playAnimation = (mixer, clips, name) => {
-    let clip = THREE.AnimationClip.findByName( clips, name )
-    if (clip === null) {
-        console.log('not found')
-    } else {
-        let action = mixer.clipAction(clip)
-        action.play()    
-    }
-}
-
-export const parseAnimation = (url, assets = true) => {
-    if (assets) {
-        return data
-    } else {
-        // TODO
-        return null
-    }
 }

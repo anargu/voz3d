@@ -8,10 +8,10 @@ import { when } from 'lit-html/directives/when'
 // import { asyncAppend } from 'lit-html/directives/async-append'
 // import { asyncReplace } from 'lit-html/directives/async-replace'
 
-import './components/toolbar/toolbar.js'
 import appCss from './lit-app.styl'
 // import './components/box-card/box-card.js'
 import './components/search-bar/search-bar.js'
+import './components/search-results/search-results.js'
 import './components/voz-three-btn/voz-three-btn.js'
 import './components/word-chip/word-chip.js'
 import './components/phrase-player/phrase-player.js'
@@ -69,6 +69,7 @@ class LitApp extends LitElement {
         `, () => {})}
 
         <search-bar></search-bar>
+        <search-results .results=${[{label: 'sdsd'},{label: 'sdsd'},{label: 'sdsd'},{label: 'sdsd'}]}></search-results>
         <phrase-player .words=${[2,2,4,5]}></phrase-player>
 
         <div class="page-container">
