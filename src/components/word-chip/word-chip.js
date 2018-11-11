@@ -18,9 +18,19 @@ class WordChip extends LitElement {
         ${css}
         </style>
 
-        <span class="label">${this.text}</span>
-        <span class="delete-icon">&times;</span>
+        <span class="label" @click=${() => this.clickWord()}>${this.text}</span>
+        <span class="delete-icon" @click=${() => this.deleteWord()}>&times;</span>
         `
+    }
+
+    clickWord() {
+        let ev = new CustomEvent('onClick', {detail: null})
+        this.dispatchEvent(ev)
+    }
+
+    deleteWord() {
+        let ev = new CustomEvent('onDelete', {detail: null})
+        this.dispatchEvent(ev)
     }
 }
 

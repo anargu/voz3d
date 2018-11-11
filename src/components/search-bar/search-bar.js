@@ -13,7 +13,7 @@ class SearchBar extends LitElement {
         </style>
         <div class="wrapper">
             <div class="search-bar">
-                <input type="text" placeholder="Buscar palabra">
+                <input id="search-input" type="text" placeholder="Buscar palabra" @input=${(e) => { this.onInput(e) }}>
             </div>
             <div class="search-icon">
                 <span class="icon">
@@ -27,6 +27,13 @@ class SearchBar extends LitElement {
             </div>
         </div>
         `
+    }
+
+    onInput(e) {
+        const value = this.shadowRoot.getElementById('search-input').value
+
+        let event = new CustomEvent('ontype', { 'detail': value })
+        this.dispatchEvent(event)
     }
 }
 

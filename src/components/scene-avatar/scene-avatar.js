@@ -31,7 +31,6 @@ class SceneAvatar extends LitElement {
     }
 
     render() {
-        console.log('render')
         return html`
         <style>
         ${css}
@@ -104,22 +103,22 @@ class SceneAvatar extends LitElement {
                 this.onFinishAnimation('name')
             })
 
-            setTimeout(() => {
-                this.onPlayAnimations([
-                    {   label:"acercarme",
-                        animations: { 
-                            head: "https://voz3d.sfo2.digitaloceanspaces.com/animations/head/0_MIEDOSO.json", 
-                            body: "https://voz3d.sfo2.digitaloceanspaces.com/animations/body/acercarme_0001.json"
-                        }
-                    },
-                    {   label:"acercarme",
-                        animations: { 
-                            head: "https://voz3d.sfo2.digitaloceanspaces.com/animations/head/0_MIEDOSO.json", 
-                            body: "https://voz3d.sfo2.digitaloceanspaces.com/animations/body/acercarme_0001.json"
-                        }
-                    }
-                ])
-            }, 2000)
+            // setTimeout(() => {
+            //     this.onPlayAnimations([
+            //         {   label:"acercarme",
+            //             animations: { 
+            //                 head: "https://voz3d.sfo2.digitaloceanspaces.com/animations/head/0_MIEDOSO.json", 
+            //                 body: "https://voz3d.sfo2.digitaloceanspaces.com/animations/body/acercarme_0001.json"
+            //             }
+            //         },
+            //         {   label:"acercarme",
+            //             animations: { 
+            //                 head: "https://voz3d.sfo2.digitaloceanspaces.com/animations/head/0_MIEDOSO.json", 
+            //                 body: "https://voz3d.sfo2.digitaloceanspaces.com/animations/body/acercarme_0001.json"
+            //             }
+            //         }
+            //     ])
+            // }, 2000)
         })
         .catch(err => {
             console.log('err', err)
@@ -134,9 +133,10 @@ class SceneAvatar extends LitElement {
     }
     
     async onPlayAnimations(words) {
-        console.log('async onPlayAnimations')
-        this.playlist.set([...words])
-        this.playAnimation(this.playlist.first())
+        if (words.length > 0) {
+            this.playlist.set([...words])
+            this.playAnimation(this.playlist.first())    
+        }
     }
 
     async playAnimation(word) {

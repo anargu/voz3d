@@ -10,8 +10,7 @@ import { when } from 'lit-html/directives/when'
 
 import appCss from './lit-app.styl'
 // import './components/box-card/box-card.js'
-import './components/search-bar/search-bar.js'
-import './components/search-results/search-results.js'
+import './components/search-element/search-element.js'
 import './components/voz-three-btn/voz-three-btn.js'
 import './components/word-chip/word-chip.js'
 import './components/phrase-player/phrase-player.js'
@@ -28,8 +27,6 @@ async function* countUp() {
         await wait(1000);
     }
 }
-
-const redTextStyle = 'color: red;'
 
 class LitApp extends LitElement {
 
@@ -59,6 +56,7 @@ class LitApp extends LitElement {
     }
 
     render() {
+        console.log('render lit-app')
         return html`
         <style>
         ${appCss}
@@ -68,21 +66,27 @@ class LitApp extends LitElement {
             <div class="offline-mode">Offline mode. Please check your connection</div>
         `, () => {})}
 
-        <search-bar></search-bar>
-        <search-results .results=${[{label: 'sdsd'},{label: 'sdsd'},{label: 'sdsd'},{label: 'sdsd'}]}></search-results>
-        <phrase-player .words=${[2,2,4,5]}></phrase-player>
+        <search-element></search-element>
+        <phrase-player @onPlay=${(e) => this.onPlay(e)}></phrase-player>
 
         <div class="page-container">
             <!-- <h2>Lit-html with States</h2>
             <div>
             <word-chip text="hola"></word-chip>
             </div> -->
-            <scene-avatar></scene-avatar>
+            <scene-avatar id="scene"></scene-avatar>
         </div>
 
         <fab-group></fab-group>
         <voz-three-btn></voz-three-btn>
         `
+    }
+
+    onPlay(e) {
+        const sceneAvatar = this.shadowRoot.getElementById('scene')
+        if (sceneAvatar !== null) {
+            sceneAvatar.onPlayAnimations(e.detail)
+        }
     }
 }
 
