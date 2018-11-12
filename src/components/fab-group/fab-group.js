@@ -13,6 +13,32 @@ import svg from '../../utils/inlinesvg'
 
 class FabGroup extends LitElement {
 
+    constructor() {
+        super()
+        this.fabButtons = [
+            // {
+            //     label: 'Source Code',
+            //     svg: githubAltSVG
+            // },
+            {
+                label: 'Help us',
+                svg: coffeeSVG
+            },
+            {
+                label: 'Share',
+                svg: shareSVG
+            },
+            // {
+            //     label: 'Change Avatar',
+            //     svg: smileSVG
+            // },
+            {
+                label: 'How it works',
+                svg: questionSVG
+            }
+        ]
+    }
+
     static get properties() {
         return {
             showFabBar: Boolean
@@ -25,25 +51,12 @@ class FabGroup extends LitElement {
         ${css}
         </style>
         <div id="fab-bar-el" class="fab-bar ${this.showFabBar?'':'hidden'}">
-            <button class="fab icon">
-                <span class="fab-label">Source Code</span>
-                ${svg(githubAltSVG)}</button>
-            <button class="fab icon">
-                <span class="fab-label">Help us</span>
-                ${svg(coffeeSVG)}
-            </button>
-            <button class="fab icon">
-                <span class="fab-label">Share</span>
-                ${svg(shareSVG)}
-            </button>
-            <button class="fab icon">
-                <span class="fab-label">Change Avatar</span>
-                ${svg(smileSVG)}
-            </button>
-            <button class="fab icon">
-                    <span class="fab-label">How it Works</span>
-                    ${svg(questionSVG)}
-            </button>
+            ${this.fabButtons.map(fab => html`
+                <button class="fab icon">
+                    <span class="fab-label">${fab.label}</span>
+                    ${svg(fab.svg)}
+                </button>            
+            `)}
         </div>
         <button class="fab-menu" @click=${(e) => this.openFabBar(e)}>
             ${svg(ellipsisHSVG)}
