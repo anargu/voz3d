@@ -90,8 +90,8 @@ class SceneAvatar extends LitElement {
 
         // loading avatars
         initializeModel(
-            // ['../../assets/body.json', '../../assets/head.json']
-            ['https://voz3d.sfo2.digitaloceanspaces.com/models/body.json', 'https://voz3d.sfo2.digitaloceanspaces.com/models/head.json']
+            ['../../assets/body.json', '../../assets/head.json']
+            // ['https://voz3d.sfo2.digitaloceanspaces.com/models/body.json', 'https://voz3d.sfo2.digitaloceanspaces.com/models/head.json']
             ,
             () => { console.log('on progress...')}
         )
