@@ -26,7 +26,7 @@ class VozDialog extends LitElement {
         </style>
         <vaadin-dialog id="dialog-box">
             ${this.renderContent()}
-        </vaadin-dialog>   
+        </vaadin-dialog>
         `
     }
 
