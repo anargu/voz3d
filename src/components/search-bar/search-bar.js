@@ -40,6 +40,7 @@ class SearchBar extends LitElement {
                 </span>
             </div>
             <div class="mic-icon" @click=${(e) => this.startSpeak(e)}>
+                <div class="${this.recognizing?'mic-recording-active':'mic-recording'}"></div>
                 <span class="icon">
                 ${html`${svg(micIcon)}`}
                 </span>
@@ -59,7 +60,7 @@ class SearchBar extends LitElement {
             this.recognition.onstart = () => {
                 console.log("onstart")
                 this.recognizing = true
-                this.placeholder = 'Hable ahora'
+                this.placeholder = 'Hable ahora...'
             }
             this.recognition.onresult = (ev) => {
                 let message = ev.results[0][0].transcript
@@ -82,6 +83,7 @@ class SearchBar extends LitElement {
             this.recognition.onend = () => {
                 console.log("onend")
                 this.recognizing = false
+                this.placeholder = DEFAULT_PLACEHOLDER_TEXT
             }
       
         }

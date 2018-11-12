@@ -48,8 +48,32 @@
 
 .mic-icon
     right 50px
+
+.mic-icon:hover .mic-recording
+    opacity 1
+    
+.mic-recording-active
+.mic-recording
+    position absolute
+    width 30px
+    height 30px
+    top -3px
+    left -3px
+    z-index 1
+    border-radius 8px
+    transition all .5s ease
+
+.mic-recording
+    opacity 0
+    background #ef655f
+
+.mic-recording-active
+    background #ef655f
+
 .icon
     cursor pointer
     user-select none
+    position: relative
+    z-index: 2
 .icon #search
     fill: #000
