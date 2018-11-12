@@ -16,6 +16,8 @@ import './components/word-chip/word-chip.js'
 import './components/phrase-player/phrase-player.js'
 import './components/fab-group/fab-group.js'
 import './components/scene-avatar/scene-avatar.js'
+import './components/snack-bar/snack-bar.js'
+import './components/voz-dialog/voz-dialog.js'
 
 import { offlineWatcher } from './helpers/network'
 
@@ -77,6 +79,9 @@ class LitApp extends LitElement {
             <scene-avatar id="scene"></scene-avatar>
         </div>
 
+        <voz-dialog></voz-dialog>
+
+        <snack-bar></snack-bar>
         <fab-group></fab-group>
         <voz-three-btn></voz-three-btn>
         `

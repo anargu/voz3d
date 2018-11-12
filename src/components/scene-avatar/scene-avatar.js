@@ -8,6 +8,7 @@ import { initializeModel } from './utils'
 import playlist from './playlist.js'
 
 import css from './scene-avatar.styl'
+import { sendNotification } from '../../logic/notificator';
 
 class SceneAvatar extends LitElement {
 
@@ -116,6 +117,7 @@ class SceneAvatar extends LitElement {
         .catch(err => {
             this.loaded = false
             console.log('err', err)
+            sendNotification(err)
         })
     }
 

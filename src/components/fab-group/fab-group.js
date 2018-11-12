@@ -10,6 +10,7 @@ import shareSVG from '../../assets/share.svg'
 import smileSVG from '../../assets/smile.svg'
 import questionSVG from '../../assets/question.svg'
 import svg from '../../utils/inlinesvg'
+import { openDialog, HELP_US_STATE, SHARE_STATE, HOW_IT_WORK_STATE } from '../../logic/dialoger';
 
 class FabGroup extends LitElement {
 
@@ -22,11 +23,17 @@ class FabGroup extends LitElement {
             // },
             {
                 label: 'Help us',
-                svg: coffeeSVG
+                svg: coffeeSVG,
+                action: () => {
+                    openDialog(HELP_US_STATE)
+                }
             },
             {
                 label: 'Share',
-                svg: shareSVG
+                svg: shareSVG,
+                action: () => {
+                    openDialog(SHARE_STATE)
+                }
             },
             // {
             //     label: 'Change Avatar',
@@ -34,7 +41,10 @@ class FabGroup extends LitElement {
             // },
             {
                 label: 'How it works',
-                svg: questionSVG
+                svg: questionSVG,
+                action: () => {
+                    openDialog(HOW_IT_WORK_STATE)
+                }
             }
         ]
     }
@@ -52,7 +62,7 @@ class FabGroup extends LitElement {
         </style>
         <div id="fab-bar-el" class="fab-bar ${this.showFabBar?'':'hidden'}">
             ${this.fabButtons.map(fab => html`
-                <button class="fab icon">
+                <button class="fab icon" @click=${(e) => fab.action()}>
                     <span class="fab-label">${fab.label}</span>
                     ${svg(fab.svg)}
                 </button>            

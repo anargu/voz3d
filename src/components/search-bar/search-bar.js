@@ -5,6 +5,7 @@ import searchIcon from '../../assets/search.svg'
 import micIcon from '../../assets/mic.svg'
 import svg from '../../utils/inlinesvg'
 import { filterStrict, selectWord } from '../../logic/words';
+import { sendNotification } from '../../logic/notificator';
 
 const DEFAULT_PLACEHOLDER_TEXT = 'Buscar palabra'
 
@@ -61,6 +62,8 @@ class SearchBar extends LitElement {
                 console.log("onstart")
                 this.recognizing = true
                 this.placeholder = 'Hable ahora...'
+
+                sendNotification('Reconociendo voz...')
             }
             this.recognition.onresult = (ev) => {
                 let message = ev.results[0][0].transcript
@@ -68,17 +71,24 @@ class SearchBar extends LitElement {
                 const results = message.toLowerCase().split(' ')
                 console.log('results', results)
                 this.shadowRoot.getElementById('search-input').value = message
-                results.forEach(string => {
+                let noMatchedWordsIndex = []
+                results.forEach((string, i) => {
                     let foundWords = filterStrict(string)
                     if (foundWords.length > 0) {
                         selectWord(foundWords[0])
+                    } else {
+                        noMatchedWordsIndex.push(i)
                     }
                 })
+                if (noMatchedWordsIndex.length > 0) {
+                    sendNotification(`No se encontraron las palabras: ${noMatchedWordsIndex.map(i => results[i]).join(', ')}. Pronto agregaremos estas palabras.`)
+                }
             }
             this.recognition.onerror = (event) => {
                 console.log('onerror')
                 console.log(event)
                 this.recognizing = false
+                sendNotification(`SpeechRecognitionError ${event.error}`)
             }
             this.recognition.onend = () => {
                 console.log("onend")
