@@ -3,7 +3,7 @@ import {LitElement} from '@polymer/lit-element'
 import {html} from 'lit-html'
 import '../search-bar/search-bar.js'
 import '../search-results/search-results.js'
-import words from '../../assets/words.json'
+import {filter} from '../../logic/words.js'
 
 class SearchElement extends LitElement {
 
@@ -41,12 +41,7 @@ class SearchElement extends LitElement {
             if (this.showResults === false) {
                 this.showResults = true
             }
-            const results = words.filter(w => {
-                if (w.label !== undefined) {
-                    return w.label.indexOf(string) !== -1                    
-                }
-                return false
-            })
+            const results = filter(string)
             this.results = results
         } else {
             this.showResults = false

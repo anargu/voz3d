@@ -1,4 +1,5 @@
 import { BehaviorSubject } from 'rxjs'
+import db from '../assets/words.json'
 
 let words = {
     value: []
@@ -30,4 +31,22 @@ export const removeWord = (word) => {
     })
 
     wordSubject.next(words)
+}
+
+export const filter = (string) => {
+    return db.filter(w => {
+        if (w.label !== undefined) {
+            return w.label.indexOf(string.toLowerCase()) !== -1                    
+        }
+        return false
+    })
+}
+
+export const filterStrict = (string) => {
+    return db.filter(w => {
+        if (w.label !== undefined) {
+            return w.label === string.toLowerCase()
+        }
+        return false
+    })
 }
