@@ -13,6 +13,8 @@ class SceneAvatar extends LitElement {
 
     constructor() {
         super()
+        
+        this.loaded = false
 
         this.renderer = null
         this.scene = null
@@ -27,7 +29,9 @@ class SceneAvatar extends LitElement {
     }
 
     static get properties() {
-        return {}
+        return {
+            loaded: Boolean
+        }
     }
 
     render() {
@@ -35,8 +39,11 @@ class SceneAvatar extends LitElement {
         <style>
         ${css}
         </style>
+
         <canvas id="canvas-el">
         </canvas>        
+
+        <div class="loading-card" .hidden=${this.loaded}> Loading...<div>
         `
     }
 
@@ -103,24 +110,11 @@ class SceneAvatar extends LitElement {
                 this.onFinishAnimation('name')
             })
 
-            // setTimeout(() => {
-            //     this.onPlayAnimations([
-            //         {   label:"acercarme",
-            //             animations: { 
-            //                 head: "https://voz3d.sfo2.digitaloceanspaces.com/animations/head/0_MIEDOSO.json", 
-            //                 body: "https://voz3d.sfo2.digitaloceanspaces.com/animations/body/acercarme_0001.json"
-            //             }
-            //         },
-            //         {   label:"acercarme",
-            //             animations: { 
-            //                 head: "https://voz3d.sfo2.digitaloceanspaces.com/animations/head/0_MIEDOSO.json", 
-            //                 body: "https://voz3d.sfo2.digitaloceanspaces.com/animations/body/acercarme_0001.json"
-            //             }
-            //         }
-            //     ])
-            // }, 2000)
+            this.loaded = true
+
         })
         .catch(err => {
+            this.loaded = false
             console.log('err', err)
         })
     }
@@ -139,6 +133,20 @@ class SceneAvatar extends LitElement {
         }
     }
 
+    //     this.onPlayAnimations([
+    //         {   label:"acercarme",
+    //             animations: { 
+    //                 head: "https://voz3d.sfo2.digitaloceanspaces.com/animations/head/0_MIEDOSO.json", 
+    //                 body: "https://voz3d.sfo2.digitaloceanspaces.com/animations/body/acercarme_0001.json"
+    //             }
+    //         },
+    //         {   label:"acercarme",
+    //             animations: { 
+    //                 head: "https://voz3d.sfo2.digitaloceanspaces.com/animations/head/0_MIEDOSO.json", 
+    //                 body: "https://voz3d.sfo2.digitaloceanspaces.com/animations/body/acercarme_0001.json"
+    //             }
+    //         }
+    //     ])
     async playAnimation(word) {
         let clips = []
 
