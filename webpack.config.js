@@ -80,7 +80,13 @@ const productionConfig = merge([
                 clientsClaim: true,
                 skipWaiting: true
             })
-        ]
+        ],
+        optimization: {
+            minimize: true,
+            splitChunks: {
+                chunks: 'all'
+            }
+        }
     }
 ])
 
