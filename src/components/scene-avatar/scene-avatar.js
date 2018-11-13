@@ -90,8 +90,7 @@ class SceneAvatar extends LitElement {
 
         // loading avatars
         initializeModel(
-            // ['../../assets/body.json', '../../assets/head.json']
-            ['https://voz3d.sfo2.digitaloceanspaces.com/models/body.json', 'https://voz3d.sfo2.digitaloceanspaces.com/models/head.json']
+            ['../../assets/body.json', '../../assets/head.json']
             ,
             () => { console.log('on progress...')}
         )
@@ -135,20 +134,6 @@ class SceneAvatar extends LitElement {
         }
     }
 
-    //     this.onPlayAnimations([
-    //         {   label:"acercarme",
-    //             animations: { 
-    //                 head: "https://voz3d.sfo2.digitaloceanspaces.com/animations/head/0_MIEDOSO.json", 
-    //                 body: "https://voz3d.sfo2.digitaloceanspaces.com/animations/body/acercarme_0001.json"
-    //             }
-    //         },
-    //         {   label:"acercarme",
-    //             animations: { 
-    //                 head: "https://voz3d.sfo2.digitaloceanspaces.com/animations/head/0_MIEDOSO.json", 
-    //                 body: "https://voz3d.sfo2.digitaloceanspaces.com/animations/body/acercarme_0001.json"
-    //             }
-    //         }
-    //     ])
     async playAnimation(word) {
         let clips = []
 
