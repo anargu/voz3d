@@ -35,23 +35,23 @@ class VozDialog extends LitElement {
             case HELP_US_STATE:
                 return html`
                 <template>
-                <div>Ay&uacute;danos a mejorar</div>
-                <div>Estamos trabajando en este contenido, gracias por la intenci&oacute;n!</div>
-                <div>Cont&aacute;ctanos por mail <a class="link-icon" href="mailto:jp.tincopa@gmail.com?">${svg(mailSVG)}</a></div>
+                <div>Help us to improve</div>
+                <div>We are working on this content... but thanks for the intention</div>
+                <div>You can contact to us by email <a class="link-icon" href="mailto:jp.tincopa@gmail.com?">${svg(mailSVG)}</a></div>
                 </template>
                 `
             case HOW_IT_WORK_STATE:
                 return html`
                 <template>
-                <div>Escribe o pronuncia las palabras que quieres aprender su se&ntilde;a</div>
-                <div>Borra las palabras que no deseas escuchar para formar tu oraci&oacute;n </div>
-                <div>No tenemos todas las palabras pero estamos trabajando para darte mayor diversidad</div>
+                <div>Go to the search bar and write a word that you want to learn its sign e.g. "Amigos" (which means friend) or "bien" (which means good)</div>
+                <div>You can delete words selected by clicking on the X next to the word</div>
+                <div>For demo purpose we added some words to keep very concise and avoiding increase the size of the project.</div>
                 </template>
                 `                
             case SHARE_STATE:
                 return html`
                 <template>
-                <div>Puedes ayudarnos a que m&aacute;s personas conozcan de este proyecto</div>
+                <div>Share the Voz3D.com website</div>
                 <div class="link-container">
                     <a class="link-icon facebbok-link" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//voz3d.com/">
                     ${svg(facebookSVG)}

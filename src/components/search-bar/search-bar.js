@@ -7,7 +7,7 @@ import svg from '../../utils/inlinesvg'
 import { filterStrict, selectWord } from '../../logic/words';
 import { sendNotification } from '../../logic/notificator';
 
-const DEFAULT_PLACEHOLDER_TEXT = 'Buscar palabra'
+const DEFAULT_PLACEHOLDER_TEXT = 'Type a word or phrase e.g. "muy bien"'
 
 class SearchBar extends LitElement {
 
@@ -61,9 +61,9 @@ class SearchBar extends LitElement {
             this.recognition.onstart = () => {
                 console.log("onstart")
                 this.recognizing = true
-                this.placeholder = 'Hable ahora...'
+                this.placeholder = 'Speak now...'
 
-                sendNotification('Reconociendo voz...')
+                sendNotification('Recognizing voice...')
             }
             this.recognition.onresult = (ev) => {
                 let message = ev.results[0][0].transcript
@@ -81,7 +81,7 @@ class SearchBar extends LitElement {
                     }
                 })
                 if (noMatchedWordsIndex.length > 0) {
-                    sendNotification(`No se encontraron las palabras: ${noMatchedWordsIndex.map(i => results[i]).join(', ')}. Pronto agregaremos estas palabras.`)
+                    sendNotification(`There are not signs for the following words: ${noMatchedWordsIndex.map(i => results[i]).join(', ')}. Pronto agregaremos estas palabras.`)
                 }
             }
             this.recognition.onerror = (event) => {
