@@ -56,6 +56,16 @@ const assets = [
         from: path.resolve('./src/assets/manifest/*.*'),
         to: path.resolve('dist/assets/manifest/'),
         flatten: true
+    },
+    {
+        from: path.resolve('./src/assets/head/*.*'),
+        to: path.resolve('dist/assets/head/'),
+        flatten: true
+    },
+    {
+        from: path.resolve('./src/assets/body/*.*'),
+        to: path.resolve('dist/assets/body/'),
+        flatten: true
     }
 ]
   
