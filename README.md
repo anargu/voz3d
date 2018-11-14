@@ -22,3 +22,32 @@ Or run static-server (binary to run web application in localhost):
         ./static-server -port=7000 -dist=dist/
 
 Then open chrome browser (is recommended to use Chrome as the project was tested in this browser) and go to localhost:7000
+
+For the demo we developed the 3d animations of the following words in spanish: 
+
+- acercarme
+- amigos
+- atención
+- bien
+- buenos días
+- celebramos
+- abran el cuaderno
+- día
+- equivocaste
+- vamos a escuchar música
+- himno nacional
+- muy bien
+- no
+- orgulloso
+- por favor
+- que
+- respeta
+- se cayo
+- siento
+- te quiero
+- todos
+- voy
+- yo
+
+
+So in the web app you could try with these words and see the 3D animation
