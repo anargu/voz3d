@@ -19,6 +19,6 @@ To run the demo execute:
 
 Or run static-server (binary to run web application in localhost):
 
-        ./static-server -port=PORT -dist=dist/
+        ./static-server -port=7000 -dist=dist/
 
-
+Then open chrome browser (is recommended to use Chrome as the project was tested in this browser) and go to localhost:7000
