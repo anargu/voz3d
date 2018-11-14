@@ -51,3 +51,5 @@ For the demo we developed the 3d animations of the following words in spanish:
 
 
 So in the web app you could try with these words and see the 3D animation
+
+the animations was developed in Blender and the mimics were adapted from an interpreter of these signs
