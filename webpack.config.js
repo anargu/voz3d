@@ -8,6 +8,7 @@ const merge = require('webpack-merge')
 const utils = require('./webpack.utils')
 
 const ENV = utils.ENV
+const isProd = ENV === 'production'
 const INDEX_TEMPLATE = path.resolve(__dirname, 'src/index.html')
 const OUTPUT_PATH = ENV === 'production' ? path.resolve('dist') : path.resolve('src') // resolve('dist')
 
@@ -126,7 +127,8 @@ const commonConfig = merge([
         entry: path.resolve(__dirname, 'src/lit-app.js'),
         output: {
             path: path.resolve(__dirname, OUTPUT_PATH),
-            filename: 'bundled.js'
+            filename: 'bundled.js',
+            publicPath: isProd ? '/voz3d/' : ''
         },
         module: {
             rules: [...utils.rules]

@@ -7,6 +7,7 @@
     "test": "./node_modules/karma/bin/karma start karma.conf.js",
     "webpack-simple-build": "node_modules/webpack-cli/bin/cli.js --config webpack.conf.js",
     "build": "webpack --env production",
+    "build:dev": "webpack",
     "dev": "webpack-dev-server --env development",
     "serve": "http-server dist"
   },
