@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.2/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.96aaa4f2feb9adbee1246e1f786be867.js"
+  "/voz3d/precache-manifest.ebf40056b6942ddc8c94dec1d4f64f2a.js"
 );
 
 workbox.skipWaiting();
