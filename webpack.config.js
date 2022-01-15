@@ -9,7 +9,6 @@ const merge = require('webpack-merge')
 const utils = require('./webpack.utils')
 
 const ENV = utils.ENV
-const isProd = ENV === 'production'
 const INDEX_TEMPLATE = path.resolve(__dirname, 'src/index.html')
 const OUTPUT_PATH = ENV === 'production' ? path.resolve('dist/') : path.resolve('src/') // resolve('dist')
 
@@ -88,7 +87,7 @@ const productionConfig = merge([
                 publicPath: (process.env.PREFIX_PATH ? `/${process.env.PREFIX_PATH}` : 'auto'),
             }),
             // new WorkboxPlugin.GenerateSW({
-            //     // these options encourage the ServiceWorkers to get in there fast 
+            //     // these options encourage the ServiceWorkers to get in there fast
             //     // and not allow any straggling "old" SWs to hang around
             //     clientsClaim: true,
             //     skipWaiting: true
@@ -104,7 +103,6 @@ const productionConfig = merge([
         resolve: {
           alias: {
             '~': (__dirname + '/src/'),
-            // '@': (__dirname + '/dist/'),
           },
           extensions: ['.js', '.jsx', '.html']
         }
@@ -150,11 +148,11 @@ const commonConfig = merge([
         module: {
             rules: [...utils.rules]
         },
-      plugins: [
-          new webpack.DefinePlugin({
-              "ENV": JSON.stringify(ENV),
-              "PREFIX_PATH": JSON.stringify(process.env.PREFIX_PATH ? `/${process.env.PREFIX_PATH}` : ''),
-          }),
+        plugins: [
+            new webpack.DefinePlugin({
+                "ENV": JSON.stringify(ENV),
+                "PREFIX_PATH": JSON.stringify(process.env.PREFIX_PATH ? `/${process.env.PREFIX_PATH}` : ''),
+            }),
       ]
     }
 ])
