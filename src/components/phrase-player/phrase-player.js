@@ -1,9 +1,13 @@
 import {LitElement} from '@polymer/lit-element'
 import {html} from 'lit-html'
 // import {html} from 'lit-html/directives/repeat'
-import '../word-chip/word-chip.js'
-import css from './phrase-player.styl'
+import '~/components/word-chip/word-chip.js'
+import css from '~/components/phrase-player/phrase-player.styl'
 import { wordSubject, removeWord } from '../../logic/words.js'
+import getElement from '~/utils/inlinesvg.js'
+import playSVGstring from '~/assets/play.svg'
+
+const playSVG = getElement(playSVGstring);
 
 class PhrasePlayer extends LitElement {
 
@@ -41,7 +45,7 @@ class PhrasePlayer extends LitElement {
                 }
             </div>
         </div><div class="actions-container">
-            <img src="../../assets/play.svg" alt="" class="play-icon" @click=${() => this.play()}>
+            <span class="play-icon" @click=${() => this.play()}>${playSVG}</span>
         </div>
         `
     }

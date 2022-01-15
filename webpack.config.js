@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -10,7 +11,7 @@ const utils = require('./webpack.utils')
 const ENV = utils.ENV
 const isProd = ENV === 'production'
 const INDEX_TEMPLATE = path.resolve(__dirname, 'src/index.html')
-const OUTPUT_PATH = ENV === 'production' ? path.resolve('dist') : path.resolve('src') // resolve('dist')
+const OUTPUT_PATH = ENV === 'production' ? path.resolve('dist/') : path.resolve('src/') // resolve('dist')
 
 const webcomponentsjs = './node_modules/@webcomponents/webcomponentsjs'
 const webanimationjs = './node_modules/web-animations-js'
@@ -85,18 +86,26 @@ const productionConfig = merge([
                     minifyJS: true
                 }
             }),
-            new WorkboxPlugin.GenerateSW({
-                // these options encourage the ServiceWorkers to get in there fast 
-                // and not allow any straggling "old" SWs to hang around
-                clientsClaim: true,
-                skipWaiting: true
-            })
+            // new WorkboxPlugin.GenerateSW({
+            //     // these options encourage the ServiceWorkers to get in there fast 
+            //     // and not allow any straggling "old" SWs to hang around
+            //     clientsClaim: true,
+            //     skipWaiting: true
+            // })
         ],
         optimization: {
             minimize: true,
             splitChunks: {
                 chunks: 'all'
             }
+        },
+
+        resolve: {
+          alias: {
+            '~': (__dirname + '/src/'),
+            // '@': (__dirname + '/dist/'),
+          },
+          extensions: ['.js', '.jsx', '.html']
         }
     }
 ])
@@ -108,7 +117,7 @@ const developmentConfig = merge([
             new CopyWebpackPlugin([...polyfills]), // ...assets
             new HtmlWebpackPlugin({
                 template: INDEX_TEMPLATE
-            })
+            }),
         ],
 
         devServer: {
@@ -118,8 +127,15 @@ const developmentConfig = merge([
             port: 8000,
             historyApiFallback: true,
             host: 'localhost'
+        },
+
+        resolve: {
+          alias: {
+            '~': (__dirname + '/src/'),
+          },
+          extensions: ['.js', '.jsx']
         }
-        }
+    }
 ])
 
 const commonConfig = merge([
@@ -128,11 +144,17 @@ const commonConfig = merge([
         output: {
             path: path.resolve(__dirname, OUTPUT_PATH),
             filename: 'bundled.js',
-            publicPath: isProd ? '/voz3d/' : ''
+            publicPath: process.env.PREFIX_PATH ? `/${process.env.PREFIX_PATH}` : '',
         },
         module: {
             rules: [...utils.rules]
-        }
+        },
+      plugins: [
+          new webpack.DefinePlugin({
+              "ENV": JSON.stringify(ENV),
+              "PREFIX_PATH": JSON.stringify(process.env.PREFIX_PATH ? `/${process.env.PREFIX_PATH}` : ''),
+          }),
+      ]
     }
 ])
 

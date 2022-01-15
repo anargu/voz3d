@@ -112,9 +112,17 @@
       Please enable JavaScript to view this website.
     </noscript>
     <!-- Load webcomponents-loader.js to check and load any polyfills your browser needs -->
-    <script src="./vendor/webcomponents-loader.js"></script>
-    <script src="./vendor/custom-elements-es5-adapter.js"></script>
-    <script src="./vendor/web-animations-next.min.js"></script>
+
+    <% if (webpackConfig.mode === 'production') {  %>
+      <script src="/dist/vendor/webcomponents-loader.js"></script>
+      <script src="/dist/vendor/custom-elements-es5-adapter.js"></script>
+      <script src="/dist/vendor/web-animations-next.min.js"></script>
+    <%} else {  %>
+      <script src="./vendor/webcomponents-loader.js"></script>
+      <script src="./vendor/custom-elements-es5-adapter.js"></script>
+      <script src="./vendor/web-animations-next.min.js"></script>
+    <% } %>
+
     <lit-app></lit-app>
 </body>
 </html>

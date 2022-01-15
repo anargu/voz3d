@@ -1,5 +1,5 @@
 import { BehaviorSubject } from 'rxjs'
-import db from '../assets/words.json'
+import db from '~/assets/words.js'
 
 let words = {
     value: []

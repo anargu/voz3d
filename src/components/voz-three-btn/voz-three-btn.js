@@ -17,8 +17,8 @@ class VozThreeBtn extends LitElement {
         <style>
         ${css}
         </style>
-        <a href="https://voz3d.com">
-            <img src="../../assets/logo.png" alt="">
+        <a href="https://voz3d.com" target="_blank">
+            <img .src="${PREFIX_PATH}/assets/logo.png" alt="">
         </a>
         `
     }

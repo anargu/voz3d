@@ -90,7 +90,10 @@ class SceneAvatar extends LitElement {
 
         // loading avatars
         initializeModel(
-            ['../../assets/body.json', '../../assets/head.json']
+            [
+              `${PREFIX_PATH}/assets/body.json`,
+              `${PREFIX_PATH}/assets/head.json`,
+            ]
             ,
             () => { console.log('on progress...')}
         )
