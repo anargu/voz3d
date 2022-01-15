@@ -43,9 +43,15 @@ class VozDialog extends LitElement {
             case HOW_IT_WORK_STATE:
                 return html`
                 <template>
-                <div>Go to the search bar and write a word that you want to learn its sign e.g. "Amigos" (which means friend) or "bien" (which means good)</div>
-                <div>You can delete words selected by clicking on the X next to the word</div>
-                <div>For demo purpose we added some words to keep very concise and avoiding increase the size of the project.</div>
+                  <div>[EN]</div>
+                  <div>Go to the search bar and write a word that you want to learn its sign e.g. "Amigos" (which means friend) or "bien" (which means good)</div>
+                  <div>You can delete words selected by clicking on the X next to the word</div>
+                  <div>For demo purpose we added some words to keep very concise and avoiding increase the size of the project.</div>
+
+                  <div>[ES]</div>
+                  <div>Vaya a la barra de búsqueda y escriba una palabra cuyo signo desee aprender, por ejemplo "Amigos" o "bien"</div>
+                  <div>Puede eliminar las palabras seleccionadas haciendo clic en la X junto a la palabra</div>
+                  <div>Para fines de demostración, agregamos algunas palabras para mantener la concisión y evitar aumentar el tamaño del proyecto.</div>
                 </template>
                 `                
             case SHARE_STATE:
