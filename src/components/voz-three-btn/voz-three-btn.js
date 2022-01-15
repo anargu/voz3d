@@ -1,5 +1,5 @@
-import { LitElement } from '@polymer/lit-element'
-import { html } from 'lit-html'
+import { LitElement } from 'lit'
+import { html } from 'lit'
 import css from './voz-three-btn.styl'
 
 class VozThreeBtn extends LitElement {
@@ -24,4 +24,4 @@ class VozThreeBtn extends LitElement {
     }
 }
 
-customElements.define('voz-three-btn', VozThreeBtn)
+window.customElements.define('voz-three-btn', VozThreeBtn)

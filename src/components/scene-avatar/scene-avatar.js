@@ -1,5 +1,6 @@
-import {LitElement} from '@polymer/lit-element'
-import {html} from 'lit-html'
+import { LitElement } from 'lit'
+import { html } from 'lit'
+
 import axios from 'axios'
 import * as THREE from 'three'
 let OrbitControls = require('three-orbit-controls')(THREE)
@@ -213,4 +214,4 @@ class SceneAvatar extends LitElement {
     }
 }
 
-customElements.define('scene-avatar', SceneAvatar)
+window.customElements.define('scene-avatar', SceneAvatar)

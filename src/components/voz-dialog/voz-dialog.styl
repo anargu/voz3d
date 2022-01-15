@@ -11,3 +11,40 @@
 .link-container
     text-align center    
     margin-top 20px
+
+.dialog-container
+    z-index 10
+    position fixed
+    top 0
+    left 0
+    width 100%
+    height 100%
+    background #1c375a29
+    display none
+    flex-direction column
+    justify-content center
+    align-items center
+
+.dialog-container.opened
+    display flex
+
+.dialog-body
+    background #ffffff
+    display inline-block
+    max-width 500px
+    padding 24px
+    border-radius 8px
+    box-shadow rgba(25, 59, 103, 0.05) 0px 0px 0px 1px, rgba(28, 55, 90, 0.16) 0px 4px 24px -3px, rgba(28, 50, 79, 0.38) 0px 18px 64px -8px
+
+.dialog-header
+    text-align right
+
+.times
+    font-size 24px
+    cursor pointer
+    padding 4px
+    color #ffffff
+    background #ff7875
+    border-radius 50%
+    display inline-block
+    line-height 15px

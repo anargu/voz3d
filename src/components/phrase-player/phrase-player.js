@@ -1,6 +1,6 @@
-import {LitElement} from '@polymer/lit-element'
-import {html} from 'lit-html'
-// import {html} from 'lit-html/directives/repeat'
+import { LitElement } from 'lit'
+import { html } from 'lit'
+
 import '~/components/word-chip/word-chip.js'
 import css from '~/components/phrase-player/phrase-player.styl'
 import { wordSubject, removeWord } from '../../logic/words.js'
@@ -61,4 +61,4 @@ class PhrasePlayer extends LitElement {
     }
 }
 
-customElements.define('phrase-player', PhrasePlayer)
+window.customElements.define('phrase-player', PhrasePlayer)

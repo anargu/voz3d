@@ -1,5 +1,6 @@
-import { LitElement } from '@polymer/lit-element'
-import { html } from 'lit-html'
+import { LitElement } from 'lit'
+import { html } from 'lit'
+
 import css from './box-card.styl'
 
 class BoxCard extends LitElement {
@@ -23,4 +24,4 @@ class BoxCard extends LitElement {
     }
 }
 
-customElements.define('box-card', BoxCard)
+window.customElements.define('box-card', BoxCard)

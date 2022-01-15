@@ -1,5 +1,5 @@
-import { LitElement } from '@polymer/lit-element'
-import { html } from 'lit-html'
+import { LitElement } from 'lit'
+import { html } from 'lit'
 import css from './search-bar.styl'
 import searchIcon from '../../assets/search.svg'
 import micIcon from '../../assets/mic.svg'
@@ -131,4 +131,4 @@ class SearchBar extends LitElement {
     }
 }
 
-customElements.define('search-bar', SearchBar)
+window.customElements.define('search-bar', SearchBar)

@@ -1,6 +1,6 @@
 
-import { LitElement } from '@polymer/lit-element'
-import { html } from 'lit-html'
+import { LitElement } from 'lit'
+import { html } from 'lit'
 import css from './word-chip.styl'
 
 class WordChip extends LitElement {
@@ -34,4 +34,4 @@ class WordChip extends LitElement {
     }
 }
 
-customElements.define('word-chip', WordChip)
+window.customElements.define('word-chip', WordChip)

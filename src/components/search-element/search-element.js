@@ -1,6 +1,5 @@
-
-import {LitElement} from '@polymer/lit-element'
-import {html} from 'lit-html'
+import { LitElement } from 'lit'
+import { html } from 'lit'
 import '../search-bar/search-bar.js'
 import '../search-results/search-results.js'
 import {filter} from '../../logic/words.js'
@@ -53,4 +52,4 @@ class SearchElement extends LitElement {
     }
 }
 
-customElements.define('search-element', SearchElement)
+window.customElements.define('search-element', SearchElement)

@@ -1,7 +1,7 @@
+import { LitElement } from 'lit'
+import { html } from 'lit'
 
-import {LitElement} from '@polymer/lit-element'
-import {html} from '@polymer/lit-element'
-import '@polymer/paper-toast/paper-toast.js'
+import 'lit-toast/lit-toast.js';
 
 import css from './snack-bar.styl'
 
@@ -11,15 +11,16 @@ class SnackBar extends LitElement {
 
     constructor(){
         super()
-
-        this.open = false
     }
 
     static get properties() {
         return {
-            open: Boolean,
             text: String
         }
+    }
+
+    get litToast () {
+      return this.shadowRoot.querySelector('lit-toast')
     }
 
     render() {
@@ -27,28 +28,17 @@ class SnackBar extends LitElement {
             <style>
             ${css}
             </style>
-            <paper-toast id="snackbar" text=${this.text} duration="5000" .opened=${this.open}></paper-toast>
+            <lit-toast text=${this.text} duration="5000" .opened=${this.open}></lit-toast>
         `
     }
 
     firstUpdated() {
         notificationSubject.subscribe(notification => {
             if (notification.text !== null) {
-
-                if (this.open === true) {
-                    this.open = false
-
-                    setTimeout(() => {
-                        this.text = notification.text
-                        this.open = true
-                    }, 1000);    
-                } else {
-                    this.text = notification.text
-                    this.open = true
-                }
+                this.litToast.show(notification.text, 5000)
             }
         })
     }
 }
 
-customElements.define('snack-bar', SnackBar)
+window.customElements.define('snack-bar', SnackBar)

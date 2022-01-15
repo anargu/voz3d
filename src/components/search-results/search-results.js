@@ -1,6 +1,6 @@
+import { LitElement } from 'lit'
+import { html } from 'lit'
 
-import { LitElement } from '@polymer/lit-element'
-import { html } from 'lit-html'
 import css from './search-results.styl'
 import { when } from 'lit-html/directives/when'
 import {selectWord} from '../../logic/words.js'
@@ -55,4 +55,4 @@ class SearchResults extends LitElement {
     }
 }
 
-customElements.define('search-results', SearchResults)
+window.customElements.define('search-results', SearchResults)

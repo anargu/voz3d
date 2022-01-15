@@ -1,5 +1,5 @@
-import {LitElement} from '@polymer/lit-element'
-import {html} from 'lit-html'
+import { LitElement } from 'lit'
+import { html } from 'lit'
 
 import css from './fab-group.styl'
 
@@ -94,4 +94,4 @@ class FabGroup extends LitElement {
     }
 }
 
-customElements.define('fab-group', FabGroup)
+window.customElements.define('fab-group', FabGroup)

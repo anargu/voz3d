@@ -1,7 +1,7 @@
-import { LitElement } from "@polymer/lit-element";
-import { html /*, render*/ } from 'lit-html'
+import { LitElement } from 'lit'
+import { html } from 'lit'
 
-import { when } from 'lit-html/directives/when'
+import { when } from 'lit/directives/when'
 // import { until } from 'lit-html/directives/until'
 // import { guard } from 'lit-html/directives/guard'
 // import { ifDefined } from 'lit-html/directives/if-defined'
@@ -95,4 +95,4 @@ class LitApp extends LitElement {
     }
 }
 
-customElements.define('lit-app', LitApp)
+window.customElements.define('lit-app', LitApp)
