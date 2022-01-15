@@ -16,11 +16,11 @@
     -->
     <base href="/">
  
-    <link rel="shortcut icon" href="assets/manifest/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="assets/manifest/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/assets/manifest/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/assets/manifest/favicon.ico" type="image/x-icon">
 
     <!-- See https://goo.gl/OOhYW5 -->
-    <link rel="manifest" href="assets/manifest/manifest.json">
+    <link rel="manifest" href="/assets/manifest/manifest.json">
 
     <!-- See https://goo.gl/qRE0vM -->
     <meta name="theme-color" content="#0f202d">
@@ -36,14 +36,14 @@
     <meta name="apple-mobile-web-app-title" content="Voz 3D">
 
     <!-- Homescreen icons -->
-    <link rel="apple-touch-icon" href="assets/manifest/android-icon-48x48.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="assets/manifest/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="96x96" href="assets/manifest/favicon-96x96.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="assets/manifest/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="192x192" href="assets/manifest/android-icon-192x192.png">
+    <link rel="apple-touch-icon" href="/assets/manifest/android-icon-48x48.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/manifest/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="96x96" href="/assets/manifest/favicon-96x96.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/manifest/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="/assets/manifest/android-icon-192x192.png">
 
     <!-- Tile icon for Windows 8 (144x144 + tile color) -->
-    <meta name="msapplication-TileImage" content="assets/manifest/apple-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="/assets/manifest/apple-icon-144x144.png">
     <meta name="msapplication-TileColor" content="#0f202d">
     <meta name="msapplication-tap-highlight" content="no">
 
@@ -52,7 +52,7 @@
     <meta name="twitter:site" content="@username">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="my-app">
-    <meta property="og:image" content="assets/manifest/apple-icon-144x144.png" />
+    <meta property="og:image" content="/assets/manifest/apple-icon-144x144.png" />
 
 
     <!-- Performance tip: hint to the browser to start the handshake for the fonts site -->
@@ -113,15 +113,15 @@
     </noscript>
     <!-- Load webcomponents-loader.js to check and load any polyfills your browser needs -->
 
-    <% if (webpackConfig.mode === 'production') {  %>
-      <script src="/dist/vendor/webcomponents-loader.js"></script>
-      <script src="/dist/vendor/custom-elements-es5-adapter.js"></script>
-      <script src="/dist/vendor/web-animations-next.min.js"></script>
-    <%} else {  %>
-      <script src="./vendor/webcomponents-loader.js"></script>
-      <script src="./vendor/custom-elements-es5-adapter.js"></script>
-      <script src="./vendor/web-animations-next.min.js"></script>
-    <% } %>
+    <!-- <% if (webpackConfig.mode === 'production') {  %> -->
+      <!-- <script src="/dist/vendor/webcomponents-loader.js"></script> -->
+      <!-- <script src="/dist/vendor/custom-elements-es5-adapter.js"></script> -->
+      <!-- <script src="/dist/vendor/web-animations-next.min.js"></script> -->
+    <!-- <%} else {  %> -->
+      <script src="/vendor/webcomponents-loader.js"></script>
+      <script src="/vendor/custom-elements-es5-adapter.js"></script>
+      <script src="/vendor/web-animations-next.min.js"></script>
+    <!-- <% } %> -->
 
     <lit-app></lit-app>
 </body>

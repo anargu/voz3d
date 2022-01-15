@@ -16,7 +16,6 @@ const OUTPUT_PATH = ENV === 'production' ? path.resolve('dist/') : path.resolve(
 const webcomponentsjs = './node_modules/@webcomponents/webcomponentsjs'
 const webanimationjs = './node_modules/web-animations-js'
 
-
 const polyfills = [
     {
         from: path.resolve(`${webcomponentsjs}/webcomponents-*.js`),
@@ -73,7 +72,8 @@ const assets = [
   
 const productionConfig = merge([
     {
-        devtool: 'nosources-source-map',
+        // devtool: 'nosources-source-map',
+        devtool: 'source-map',
         plugins: [
             new CleanWebpackPlugin([OUTPUT_PATH], { verbose: true }),
             new CopyWebpackPlugin([...polyfills, ...assets]),
@@ -84,7 +84,8 @@ const productionConfig = merge([
                     removeComments: true,
                     minifyCSS: true,
                     minifyJS: true
-                }
+                },
+                publicPath: (process.env.PREFIX_PATH ? `/${process.env.PREFIX_PATH}` : 'auto'),
             }),
             // new WorkboxPlugin.GenerateSW({
             //     // these options encourage the ServiceWorkers to get in there fast 
